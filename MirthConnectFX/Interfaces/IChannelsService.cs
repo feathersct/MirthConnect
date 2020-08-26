@@ -13,5 +13,7 @@ namespace MirthConnectFX
         void EnableChannel(string channelId);
         void DisableChannel(string channelId);
         GlobalScripts GetChannelIdsAndNames();
+
+        string GetRawChannelXML(string channelId);
     }
 }

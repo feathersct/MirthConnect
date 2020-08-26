@@ -163,7 +163,7 @@ namespace MirthConnectFX
         {
             var data = PreparePostData();
             PrepareUrl();
-            var httpRequest = httpRequestFactory.Create(new Uri(url));
+            var httpRequest = httpRequestFactory.Create(new Uri(Uri.EscapeUriString(url)));
 
             //httpRequest.Method = "POST";
             //httpRequest.ContentType = "application/x-www-form-urlencoded";
@@ -241,7 +241,9 @@ namespace MirthConnectFX
                 url += "?";
 
                 foreach (var item in UrlParameters)
-                    url += $"{item.Key}={item.Value}";
+                    url += $"{item.Key}={item.Value}&";
+
+                url = url.Remove(url.Length - 1, 1);
             }
         }
 

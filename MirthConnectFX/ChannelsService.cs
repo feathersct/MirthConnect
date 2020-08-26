@@ -71,6 +71,19 @@ namespace MirthConnectFX
             return channelList;
         }
 
+        public string GetRawChannelXML(string channelId)
+        {
+            //if (Session.IsMirthVersion(MirthBaseVersion.V3x))
+            //    return GetChannels(new[] {channelId}).FirstOrDefault();
+
+            var channel = new Channel { Id = channelId }.ToXml();
+            var request = CreateRequest().ForOperation(channelId);
+            //request.AddPostData("channel", channel);
+
+            var response = request.ExecuteGet();
+            return response.Content;
+        }
+
         public GlobalScripts GetChannelIdsAndNames()
         {
             var request = CreateRequest().ForOperation(Operations.Channels.GetIdsAndName);
